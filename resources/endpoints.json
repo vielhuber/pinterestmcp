@@ -1,0 +1,1596 @@
+[
+    {
+        "name": "boardsCreate",
+        "path": "/boards",
+        "method": "POST",
+        "write": true,
+        "description": "Create board.",
+        "url": "https://developers.pinterest.com/docs/api/v5/#operation/boards/create",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "ad_account_id": {
+                    "type": "string",
+                    "maxLength": 18,
+                    "pattern": "^\\d+$"
+                }
+            },
+            "additionalProperties": false
+        },
+        "body": {
+            "description": "Resource create operation model.",
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": ["string", "null"]
+                },
+                "is_ads_only": {
+                    "description": "If set to `true`, the board will be ad-only and can store ad-only Pins.",
+                    "type": "boolean"
+                },
+                "name": {
+                    "description": "    Name of the board.\n\n    **Note:** If you create an ad-only board by setting `is_ads_only`\n    to `true`, the board name automatically becomes \"Ad-only Pins\"",
+                    "type": "string"
+                },
+                "privacy": {
+                    "description": "    Privacy setting for a board. Learn more about [secret](https://help.pinterest.com/en/article/secret-boards)\n    boards and [protected](https://help.pinteres",
+                    "type": "string",
+                    "enum": ["PUBLIC", "PROTECTED", "SECRET"]
+                }
+            },
+            "required": ["name"]
+        },
+        "bodyRequired": true
+    },
+    {
+        "name": "boardsList",
+        "path": "/boards",
+        "method": "GET",
+        "write": false,
+        "description": "List boards.",
+        "url": "https://developers.pinterest.com/docs/api/v5/#operation/boards/list",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "ad_account_id": {
+                    "type": "string",
+                    "maxLength": 18,
+                    "pattern": "^\\d+$"
+                },
+                "privacy": {
+                    "type": "string",
+                    "enum": ["ALL", "PUBLIC", "PROTECTED", "SECRET", "PUBLIC_AND_SECRET"]
+                },
+                "bookmark": {
+                    "type": "string"
+                },
+                "page_size": {
+                    "type": "integer",
+                    "maximum": 250,
+                    "minimum": 1
+                }
+            },
+            "additionalProperties": false
+        }
+    },
+    {
+        "name": "boardsGet",
+        "path": "/boards/{board_id}",
+        "method": "GET",
+        "write": false,
+        "description": "Get board.",
+        "url": "https://developers.pinterest.com/docs/api/v5/#operation/boards/get",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "ad_account_id": {
+                    "type": "string",
+                    "maxLength": 18,
+                    "pattern": "^\\d+$"
+                }
+            },
+            "additionalProperties": false
+        }
+    },
+    {
+        "name": "boardsDelete",
+        "path": "/boards/{board_id}",
+        "method": "DELETE",
+        "write": true,
+        "description": "Delete board.",
+        "url": "https://developers.pinterest.com/docs/api/v5/#operation/boards/delete",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "ad_account_id": {
+                    "type": "string",
+                    "maxLength": 18,
+                    "pattern": "^\\d+$"
+                }
+            },
+            "additionalProperties": false
+        }
+    },
+    {
+        "name": "boardsUpdate",
+        "path": "/boards/{board_id}",
+        "method": "PATCH",
+        "write": true,
+        "description": "Update board.",
+        "url": "https://developers.pinterest.com/docs/api/v5/#operation/boards/update",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "ad_account_id": {
+                    "type": "string",
+                    "maxLength": 18,
+                    "pattern": "^\\d+$"
+                }
+            },
+            "additionalProperties": false
+        },
+        "body": {
+            "description": "Resource create or update operation model.",
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": ["string", "null"]
+                },
+                "name": {
+                    "description": "    Name of the board.\n\n    **Note:** If you create an ad-only board by setting `is_ads_only`\n    to `true`, the board name automatically becomes \"Ad-only Pins\"",
+                    "type": "string"
+                },
+                "privacy": {
+                    "type": "string",
+                    "enum": ["PUBLIC", "SECRET"]
+                }
+            }
+        },
+        "bodyRequired": true
+    },
+    {
+        "name": "boardsListPins",
+        "path": "/boards/{board_id}/pins",
+        "method": "GET",
+        "write": false,
+        "description": "List Pins on board.",
+        "url": "https://developers.pinterest.com/docs/api/v5/#operation/boards/list_pins",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "creative_types": {
+                    "type": "array",
+                    "items": {
+                        "description": "Ad creative type enum.\n**Note:** SHOP_THE_PIN has been deprecated. Please use COLLECTION instead.",
+                        "type": "string",
+                        "enum": [
+                            "REGULAR",
+                            "VIDEO",
+                            "SHOPPING",
+                            "CAROUSEL",
+                            "MAX_VIDEO",
+                            "SHOP_THE_PIN",
+                            "COLLECTION",
+                            "IDEA",
+                            "SHOWCASE",
+                            "QUIZ",
+                            "COLLAGE",
+                            "MAX_WIDTH_REGULAR_COLLECTION",
+                            "MAX_WIDTH_VIDEO_COLLECTION",
+                            "APP"
+                        ]
+                    }
+                },
+                "ad_account_id": {
+                    "type": "string",
+                    "maxLength": 18,
+                    "pattern": "^\\d+$"
+                },
+                "pin_metrics": {
+                    "type": "boolean"
+                },
+                "bookmark": {
+                    "type": "string"
+                },
+                "page_size": {
+                    "type": "integer",
+                    "maximum": 250,
+                    "minimum": 1
+                }
+            },
+            "additionalProperties": false
+        }
+    },
+    {
+        "name": "boardSectionsList",
+        "path": "/boards/{board_id}/sections",
+        "method": "GET",
+        "write": false,
+        "description": "List board sections.",
+        "url": "https://developers.pinterest.com/docs/api/v5/#operation/board_sections/list",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "ad_account_id": {
+                    "type": "string",
+                    "maxLength": 18,
+                    "pattern": "^\\d+$"
+                },
+                "bookmark": {
+                    "type": "string"
+                },
+                "page_size": {
+                    "type": "integer",
+                    "maximum": 250,
+                    "minimum": 1
+                }
+            },
+            "additionalProperties": false
+        }
+    },
+    {
+        "name": "boardSectionsCreate",
+        "path": "/boards/{board_id}/sections",
+        "method": "POST",
+        "write": true,
+        "description": "Create board section.",
+        "url": "https://developers.pinterest.com/docs/api/v5/#operation/board_sections/create",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "ad_account_id": {
+                    "type": "string",
+                    "maxLength": 18,
+                    "pattern": "^\\d+$"
+                }
+            },
+            "additionalProperties": false
+        },
+        "body": {
+            "description": "Resource create operation model.",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string",
+                    "maxLength": 180,
+                    "minLength": 1
+                }
+            },
+            "required": ["name"]
+        },
+        "bodyRequired": true
+    },
+    {
+        "name": "boardSectionsDelete",
+        "path": "/boards/{board_id}/sections/{section_id}",
+        "method": "DELETE",
+        "write": true,
+        "description": "Delete board section.",
+        "url": "https://developers.pinterest.com/docs/api/v5/#operation/board_sections/delete",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "ad_account_id": {
+                    "type": "string",
+                    "maxLength": 18,
+                    "pattern": "^\\d+$"
+                }
+            },
+            "additionalProperties": false
+        }
+    },
+    {
+        "name": "boardSectionsUpdate",
+        "path": "/boards/{board_id}/sections/{section_id}",
+        "method": "PATCH",
+        "write": true,
+        "description": "Update board section.",
+        "url": "https://developers.pinterest.com/docs/api/v5/#operation/board_sections/update",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "ad_account_id": {
+                    "type": "string",
+                    "maxLength": 18,
+                    "pattern": "^\\d+$"
+                }
+            },
+            "additionalProperties": false
+        },
+        "body": {
+            "description": "Resource create or update operation model with required body fields (no OptionalProperties).",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string",
+                    "maxLength": 180,
+                    "minLength": 1
+                }
+            },
+            "required": ["name"]
+        },
+        "bodyRequired": true
+    },
+    {
+        "name": "boardSectionsListPins",
+        "path": "/boards/{board_id}/sections/{section_id}/pins",
+        "method": "GET",
+        "write": false,
+        "description": "List Pins on board section.",
+        "url": "https://developers.pinterest.com/docs/api/v5/#operation/board_sections/list_pins",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "ad_account_id": {
+                    "type": "string",
+                    "maxLength": 18,
+                    "pattern": "^\\d+$"
+                },
+                "bookmark": {
+                    "type": "string"
+                },
+                "page_size": {
+                    "type": "integer",
+                    "maximum": 250,
+                    "minimum": 1
+                }
+            },
+            "additionalProperties": false
+        }
+    },
+    {
+        "name": "mediaList",
+        "path": "/media",
+        "method": "GET",
+        "write": false,
+        "description": "List media uploads.",
+        "url": "https://developers.pinterest.com/docs/api/v5/#operation/media/list",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "bookmark": {
+                    "type": "string"
+                },
+                "page_size": {
+                    "type": "integer",
+                    "maximum": 250,
+                    "minimum": 1
+                }
+            },
+            "additionalProperties": false
+        }
+    },
+    {
+        "name": "mediaCreate",
+        "path": "/media",
+        "method": "POST",
+        "write": true,
+        "description": "Register media upload.",
+        "url": "https://developers.pinterest.com/docs/api/v5/#operation/media/create",
+        "body": {
+            "description": "Resource create operation model.",
+            "type": "object",
+            "properties": {
+                "media_type": {
+                    "type": "string",
+                    "enum": ["video"]
+                }
+            },
+            "required": ["media_type"]
+        },
+        "bodyRequired": true
+    },
+    {
+        "name": "mediaGet",
+        "path": "/media/{media_id}",
+        "method": "GET",
+        "write": false,
+        "description": "Get media upload details.",
+        "url": "https://developers.pinterest.com/docs/api/v5/#operation/media/get"
+    },
+    {
+        "name": "pinsCreate",
+        "path": "/pins",
+        "method": "POST",
+        "write": true,
+        "description": "Create Pin.",
+        "url": "https://developers.pinterest.com/docs/api/v5/#operation/pins/create",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "ad_account_id": {
+                    "type": "string",
+                    "maxLength": 18,
+                    "pattern": "^\\d+$"
+                }
+            },
+            "additionalProperties": false
+        },
+        "body": {
+            "description": "Resource create operation model.",
+            "type": "object",
+            "properties": {
+                "ai_disclosures": {
+                    "description": "AI disclosure declarations the creator has made about the Pin.",
+                    "type": "object",
+                    "properties": {
+                        "values": {
+                            "description": "List of AI disclosure declarations the creator has made about this Pin.",
+                            "type": "array",
+                            "items": {
+                                "description": "AI disclosure declaration the creator has made about the Pin.",
+                                "type": "string",
+                                "enum": ["AI_MODIFIED", "SYNTHETIC_PERFORMER"]
+                            }
+                        }
+                    },
+                    "required": ["values"]
+                },
+                "alt_text": {
+                    "type": ["string", "null"],
+                    "maxLength": 500
+                },
+                "board_id": {
+                    "description": "The board to which this Pin belongs.",
+                    "type": "string",
+                    "pattern": "^\\d+$"
+                },
+                "board_section_id": {
+                    "description": "The board section to which this Pin belongs.",
+                    "type": ["string", "null"],
+                    "pattern": "^\\d+$"
+                },
+                "description": {
+                    "type": ["string", "null"],
+                    "maxLength": 800
+                },
+                "dominant_color": {
+                    "description": "Dominant pin color. Hex number, e.g. `#6E7874`.",
+                    "type": ["string", "null"]
+                },
+                "link": {
+                    "type": ["string", "null"],
+                    "maxLength": 2048
+                },
+                "media_source": {
+                    "description": "Pin media source that can be an image, video, or a mix of both passed in as a request.",
+                    "type": "object",
+                    "oneOf": [
+                        {
+                            "description": "Image Base64-based media source.",
+                            "type": "object",
+                            "properties": {
+                                "content_type": {
+                                    "type": "string",
+                                    "enum": ["image/jpeg", "image/png"]
+                                },
+                                "data": {
+                                    "type": "string",
+                                    "pattern": "^[a-zA-Z0-9+/=]+$"
+                                },
+                                "is_standard": {
+                                    "description": "Set the parameter to false to create the new simplified Pin instead of the standard pin. Currently the field is only available to a list of beta users.",
+                                    "type": "boolean"
+                                },
+                                "source_type": {
+                                    "description": "The source type of the media.",
+                                    "type": "string",
+                                    "enum": ["image_base64"]
+                                }
+                            },
+                            "required": ["source_type", "content_type", "data"]
+                        },
+                        {
+                            "description": "Image URL-based media source.",
+                            "type": "object",
+                            "properties": {
+                                "is_standard": {
+                                    "description": "Set the parameter to false to create the new simplified Pin instead of the standard pin. Currently the field is only available to a list of beta users.",
+                                    "type": "boolean"
+                                },
+                                "source_type": {
+                                    "description": "The source type of the media.",
+                                    "type": "string",
+                                    "enum": ["image_url"]
+                                },
+                                "url": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": ["source_type", "url"]
+                        },
+                        {
+                            "description": "Video ID-based media source.",
+                            "type": "object",
+                            "properties": {
+                                "cover_image_content_type": {
+                                    "description": "Content type for cover image Base64.",
+                                    "type": "string",
+                                    "enum": ["image/jpeg", "image/png"]
+                                },
+                                "cover_image_data": {
+                                    "description": "Cover image Base64.",
+                                    "type": "string"
+                                },
+                                "cover_image_key_frame_time": {
+                                    "description": "Keyframe timestamp for cover image (seconds). If entered time exceeds video duration, the last frame is used.",
+                                    "type": "integer",
+                                    "minimum": 0
+                                },
+                                "cover_image_url": {
+                                    "description": "Cover image URL.",
+                                    "type": "string"
+                                },
+                                "is_standard": {
+                                    "description": "Set the parameter to false to create the new simplified Pin instead of the standard pin. Currently the field is only available to a list of beta users.",
+                                    "type": "boolean"
+                                },
+                                "media_id": {
+                                    "type": "string",
+                                    "pattern": "^\\d+$"
+                                },
+                                "source_type": {
+                                    "type": "string",
+                                    "enum": ["video_id"]
+                                }
+                            },
+                            "required": ["media_id", "source_type"]
+                        },
+                        {
+                            "description": "Multiple Base64-based images media source",
+                            "type": "object",
+                            "properties": {
+                                "index": {
+                                    "type": "integer",
+                                    "minimum": 0
+                                },
+                                "items": {
+                                    "description": "Array with image objects.",
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "content_type": {
+                                                "type": "string",
+                                                "enum": ["image/jpeg", "image/png"]
+                                            },
+                                            "data": {
+                                                "type": "string",
+                                                "pattern": "^[a-zA-Z0-9+/=]+$"
+                                            },
+                                            "description": {
+                                                "type": "string"
+                                            },
+                                            "link": {
+                                                "type": "string"
+                                            },
+                                            "title": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": ["content_type", "data"]
+                                    },
+                                    "maxItems": 5,
+                                    "minItems": 2
+                                },
+                                "source_type": {
+                                    "description": "The source type of the media.",
+                                    "type": "string",
+                                    "enum": ["multiple_image_base64"]
+                                }
+                            },
+                            "required": ["source_type", "items"]
+                        },
+                        {
+                            "description": "Multiple URL-based images media source",
+                            "type": "object",
+                            "properties": {
+                                "index": {
+                                    "type": "integer",
+                                    "minimum": 0
+                                },
+                                "items": {
+                                    "description": "Array with image objects.",
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "description": {
+                                                "type": "string"
+                                            },
+                                            "link": {
+                                                "type": "string"
+                                            },
+                                            "title": {
+                                                "type": "string"
+                                            },
+                                            "url": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": ["url"]
+                                    },
+                                    "maxItems": 5,
+                                    "minItems": 2
+                                },
+                                "source_type": {
+                                    "description": "The source type of the media.",
+                                    "type": "string",
+                                    "enum": ["multiple_image_urls"]
+                                }
+                            },
+                            "required": ["source_type", "items"]
+                        },
+                        {
+                            "description": "Pin URL-based media source for product pin creation. Currently the field is only available to a list of beta users.",
+                            "type": "object",
+                            "properties": {
+                                "is_affiliate_link": {
+                                    "description": "This is an affiliate link or sponsored product. The FTC requires disclosure for paid partnerships and affiliate products.",
+                                    "type": "boolean"
+                                },
+                                "source_type": {
+                                    "type": "string",
+                                    "enum": ["pin_url"]
+                                }
+                            },
+                            "required": ["source_type"]
+                        }
+                    ]
+                },
+                "parent_pin_id": {
+                    "description": "The source pin id if this pin was saved from another pin. [Learn more](https://help.pinterest.com/article/save-pins-on-pinterest).",
+                    "type": ["string", "null"],
+                    "pattern": "^\\d+$"
+                },
+                "sponsor_id": {
+                    "description": "The sponsor account id to request paid partnership from.  Currently the field is only available to a list of users in a closed beta.",
+                    "type": ["string", "null"],
+                    "pattern": "^\\d+$"
+                },
+                "title": {
+                    "type": ["string", "null"],
+                    "maxLength": 100
+                }
+            }
+        },
+        "bodyRequired": true
+    },
+    {
+        "name": "pinsList",
+        "path": "/pins",
+        "method": "GET",
+        "write": false,
+        "description": "List Pins.",
+        "url": "https://developers.pinterest.com/docs/api/v5/#operation/pins/list",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "pin_filter": {
+                    "type": "string",
+                    "enum": ["exclude_native", "exclude_repins", "has_been_promoted"]
+                },
+                "pin_metrics": {
+                    "type": "boolean"
+                },
+                "include_protected_pins": {
+                    "type": "boolean"
+                },
+                "pin_type": {
+                    "type": "string",
+                    "enum": ["PRIVATE"]
+                },
+                "creative_types": {
+                    "type": "array",
+                    "items": {
+                        "description": "Ad creative type enum.\n**Note:** SHOP_THE_PIN has been deprecated. Please use COLLECTION instead.",
+                        "type": "string",
+                        "enum": [
+                            "REGULAR",
+                            "VIDEO",
+                            "SHOPPING",
+                            "CAROUSEL",
+                            "MAX_VIDEO",
+                            "SHOP_THE_PIN",
+                            "COLLECTION",
+                            "IDEA",
+                            "SHOWCASE",
+                            "QUIZ",
+                            "COLLAGE",
+                            "MAX_WIDTH_REGULAR_COLLECTION",
+                            "MAX_WIDTH_VIDEO_COLLECTION",
+                            "APP"
+                        ]
+                    }
+                },
+                "ad_account_id": {
+                    "type": "string",
+                    "maxLength": 18,
+                    "pattern": "^\\d+$"
+                },
+                "domain": {
+                    "type": "string"
+                },
+                "domains": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "maxItems": 100,
+                    "minItems": 1
+                },
+                "include_product_tag_obj": {
+                    "type": "boolean"
+                },
+                "bookmark": {
+                    "type": "string"
+                },
+                "page_size": {
+                    "type": "integer",
+                    "maximum": 250,
+                    "minimum": 1
+                }
+            },
+            "additionalProperties": false
+        }
+    },
+    {
+        "name": "multiPinsAnalytics",
+        "path": "/pins/analytics",
+        "method": "GET",
+        "write": false,
+        "description": "Get multiple Pin analytics. Restricted or beta access may be required.",
+        "url": "https://developers.pinterest.com/docs/api/v5/#operation/multi_pins/analytics",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "pin_ids": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "pattern": "^\\d+$"
+                    },
+                    "maxItems": 100,
+                    "minItems": 1
+                },
+                "start_date": {
+                    "type": "string",
+                    "format": "date"
+                },
+                "end_date": {
+                    "type": "string",
+                    "format": "date"
+                },
+                "app_types": {
+                    "type": "string",
+                    "enum": ["ALL", "MOBILE", "TABLET", "WEB"]
+                },
+                "metric_types": {
+                    "type": "array",
+                    "items": {
+                        "description": "Pin metric type for multi-pin analytics",
+                        "type": "string",
+                        "enum": [
+                            "IMPRESSION",
+                            "OUTBOUND_CLICK",
+                            "PIN_CLICK",
+                            "SAVE",
+                            "SAVE_RATE",
+                            "TOTAL_COMMENTS",
+                            "TOTAL_REACTIONS",
+                            "USER_FOLLOW",
+                            "PROFILE_VISIT",
+                            "VIDEO_MRC_VIEW",
+                            "VIDEO_10S_VIEW",
+                            "QUARTILE_95_PERCENT_VIEW",
+                            "VIDEO_V50_WATCH_TIME",
+                            "VIDEO_START",
+                            "VIDEO_AVG_WATCH_TIME"
+                        ]
+                    }
+                },
+                "ad_account_id": {
+                    "type": "string",
+                    "maxLength": 18,
+                    "pattern": "^\\d+$"
+                }
+            },
+            "additionalProperties": false,
+            "required": ["pin_ids", "start_date", "end_date", "metric_types"]
+        },
+        "parametersRequired": true
+    },
+    {
+        "name": "pinsGet",
+        "path": "/pins/{pin_id}",
+        "method": "GET",
+        "write": false,
+        "description": "Get Pin.",
+        "url": "https://developers.pinterest.com/docs/api/v5/#operation/pins/get",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "ad_account_id": {
+                    "type": "string",
+                    "maxLength": 18,
+                    "pattern": "^\\d+$"
+                },
+                "pin_metrics": {
+                    "type": "boolean"
+                }
+            },
+            "additionalProperties": false
+        }
+    },
+    {
+        "name": "pinsUpdate",
+        "path": "/pins/{pin_id}",
+        "method": "PATCH",
+        "write": true,
+        "description": "Update Pin. Restricted or beta access may be required.",
+        "url": "https://developers.pinterest.com/docs/api/v5/#operation/pins/update",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "ad_account_id": {
+                    "type": "string",
+                    "maxLength": 18,
+                    "pattern": "^\\d+$"
+                }
+            },
+            "additionalProperties": false
+        },
+        "body": {
+            "description": "Resource create or update operation model.",
+            "type": "object",
+            "properties": {
+                "ai_disclosures": {
+                    "description": "AI disclosure declarations the creator has made about the Pin.",
+                    "type": "object",
+                    "properties": {
+                        "values": {
+                            "description": "List of AI disclosure declarations the creator has made about this Pin.",
+                            "type": "array",
+                            "items": {
+                                "description": "AI disclosure declaration the creator has made about the Pin.",
+                                "type": "string",
+                                "enum": ["AI_MODIFIED", "SYNTHETIC_PERFORMER"]
+                            }
+                        }
+                    }
+                },
+                "alt_text": {
+                    "type": ["string", "null"],
+                    "maxLength": 500
+                },
+                "board_id": {
+                    "description": "The board to which this Pin belongs.",
+                    "type": "string",
+                    "pattern": "^\\d+$"
+                },
+                "board_section_id": {
+                    "description": "The board section to which this Pin belongs.",
+                    "type": ["string", "null"],
+                    "pattern": "^\\d+$"
+                },
+                "carousel_slots": {
+                    "description": "Carousel Pin slots data.",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "description": {
+                                "description": "Carousel Pin slot description.",
+                                "type": "string"
+                            },
+                            "link": {
+                                "description": "Carousel Pin slot link.",
+                                "type": "string"
+                            },
+                            "title": {
+                                "description": "Carousel Pin slot title.",
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "description": {
+                    "type": ["string", "null"],
+                    "maxLength": 800
+                },
+                "link": {
+                    "type": ["string", "null"],
+                    "maxLength": 2048
+                },
+                "title": {
+                    "type": ["string", "null"],
+                    "maxLength": 100
+                }
+            }
+        },
+        "bodyRequired": true
+    },
+    {
+        "name": "pinsDelete",
+        "path": "/pins/{pin_id}",
+        "method": "DELETE",
+        "write": true,
+        "description": "Delete Pin.",
+        "url": "https://developers.pinterest.com/docs/api/v5/#operation/pins/delete",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "ad_account_id": {
+                    "type": "string",
+                    "maxLength": 18,
+                    "pattern": "^\\d+$"
+                }
+            },
+            "additionalProperties": false
+        }
+    },
+    {
+        "name": "pinsAnalytics",
+        "path": "/pins/{pin_id}/analytics",
+        "method": "GET",
+        "write": false,
+        "description": "Get Pin analytics.",
+        "url": "https://developers.pinterest.com/docs/api/v5/#operation/pins/analytics",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "start_date": {
+                    "type": "string",
+                    "format": "date"
+                },
+                "end_date": {
+                    "type": "string",
+                    "format": "date"
+                },
+                "app_types": {
+                    "type": "string",
+                    "enum": ["ALL", "MOBILE", "TABLET", "WEB"]
+                },
+                "metric_types": {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "description": "Standard Pin metric types",
+                                "type": "string",
+                                "enum": [
+                                    "IMPRESSION",
+                                    "OUTBOUND_CLICK",
+                                    "PIN_CLICK",
+                                    "SAVE",
+                                    "SAVE_RATE",
+                                    "TOTAL_COMMENTS",
+                                    "TOTAL_REACTIONS",
+                                    "USER_FOLLOW",
+                                    "PROFILE_VISIT"
+                                ]
+                            },
+                            {
+                                "description": "Video Pin metric types",
+                                "type": "string",
+                                "enum": [
+                                    "IMPRESSION",
+                                    "OUTBOUND_CLICK",
+                                    "PIN_CLICK",
+                                    "SAVE",
+                                    "SAVE_RATE",
+                                    "VIDEO_MRC_VIEW",
+                                    "VIDEO_10S_VIEW",
+                                    "QUARTILE_95_PERCENT_VIEW",
+                                    "VIDEO_V50_WATCH_TIME",
+                                    "VIDEO_START",
+                                    "VIDEO_AVG_WATCH_TIME",
+                                    "TOTAL_COMMENTS",
+                                    "TOTAL_REACTIONS"
+                                ]
+                            }
+                        ]
+                    }
+                },
+                "split_field": {
+                    "type": "string",
+                    "enum": ["NO_SPLIT", "APP_TYPE"]
+                },
+                "ad_account_id": {
+                    "type": "string",
+                    "maxLength": 18,
+                    "pattern": "^\\d+$"
+                }
+            },
+            "additionalProperties": false,
+            "required": ["start_date", "end_date", "metric_types"]
+        },
+        "parametersRequired": true
+    },
+    {
+        "name": "pinsSave",
+        "path": "/pins/{pin_id}/save",
+        "method": "POST",
+        "write": true,
+        "description": "Save Pin.",
+        "url": "https://developers.pinterest.com/docs/api/v5/#operation/pins/save",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "ad_account_id": {
+                    "type": "string",
+                    "maxLength": 18,
+                    "pattern": "^\\d+$"
+                }
+            },
+            "additionalProperties": false
+        },
+        "body": {
+            "description": "Resource create operation model.",
+            "type": "object",
+            "properties": {
+                "board_id": {
+                    "description": "Unique identifier of the board to which the pin will be saved.",
+                    "type": ["string", "null"],
+                    "pattern": "^\\d+$"
+                },
+                "board_section_id": {
+                    "description": "Unique identifier of the board section to which the pin will be saved.",
+                    "type": ["string", "null"],
+                    "pattern": "^\\d+$"
+                }
+            }
+        },
+        "bodyRequired": true
+    },
+    {
+        "name": "searchUserBoardsGet",
+        "path": "/search/boards",
+        "method": "GET",
+        "write": false,
+        "description": "Search user's boards.",
+        "url": "https://developers.pinterest.com/docs/api/v5/#operation/search_user_boards/get",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "ad_account_id": {
+                    "type": "string",
+                    "maxLength": 18,
+                    "pattern": "^\\d+$"
+                },
+                "query": {
+                    "type": "string"
+                },
+                "bookmark": {
+                    "type": "string"
+                },
+                "page_size": {
+                    "type": "integer",
+                    "maximum": 250,
+                    "minimum": 1
+                }
+            },
+            "additionalProperties": false
+        }
+    },
+    {
+        "name": "searchUserPinsList",
+        "path": "/search/pins",
+        "method": "GET",
+        "write": false,
+        "description": "Search user's Pins.",
+        "url": "https://developers.pinterest.com/docs/api/v5/#operation/search_user_pins/list",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "ad_account_id": {
+                    "type": "string",
+                    "maxLength": 18,
+                    "pattern": "^\\d+$"
+                },
+                "query": {
+                    "type": "string"
+                },
+                "bookmark": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false,
+            "required": ["query"]
+        },
+        "parametersRequired": true
+    },
+    {
+        "name": "userAccountGet",
+        "path": "/user_account",
+        "method": "GET",
+        "write": false,
+        "description": "Get user account.",
+        "url": "https://developers.pinterest.com/docs/api/v5/#operation/user_account/get",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "ad_account_id": {
+                    "type": "string",
+                    "maxLength": 18,
+                    "pattern": "^\\d+$"
+                }
+            },
+            "additionalProperties": false
+        }
+    },
+    {
+        "name": "userAccountAnalytics",
+        "path": "/user_account/analytics",
+        "method": "GET",
+        "write": false,
+        "description": "Get user account analytics.",
+        "url": "https://developers.pinterest.com/docs/api/v5/#operation/user_account/analytics",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "start_date": {
+                    "type": "string",
+                    "format": "date"
+                },
+                "end_date": {
+                    "type": "string",
+                    "format": "date"
+                },
+                "from_claimed_content": {
+                    "type": "string",
+                    "enum": ["OTHER", "CLAIMED", "BOTH"]
+                },
+                "pin_format": {
+                    "type": "string",
+                    "enum": [
+                        "ALL",
+                        "ORGANIC_IMAGE",
+                        "ORGANIC_PRODUCT",
+                        "ORGANIC_VIDEO",
+                        "ADS_STANDARD",
+                        "ADS_PRODUCT",
+                        "ADS_VIDEO",
+                        "ADS_IDEA"
+                    ]
+                },
+                "app_types": {
+                    "type": "string",
+                    "enum": ["ALL", "MOBILE", "TABLET", "WEB"]
+                },
+                "content_type": {
+                    "type": "string",
+                    "enum": ["ALL", "PAID", "ORGANIC"]
+                },
+                "source": {
+                    "type": "string",
+                    "enum": ["ALL", "YOUR_PINS", "OTHER_PINS"]
+                },
+                "metric_types": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "ENGAGEMENT",
+                            "ENGAGEMENT_RATE",
+                            "IMPRESSION",
+                            "OUTBOUND_CLICK",
+                            "OUTBOUND_CLICK_RATE",
+                            "PIN_CLICK",
+                            "PIN_CLICK_RATE",
+                            "SAVE",
+                            "SAVE_RATE"
+                        ]
+                    }
+                },
+                "split_field": {
+                    "type": "string",
+                    "enum": ["NO_SPLIT", "APP_TYPE", "OWNED_CONTENT", "SOURCE", "PIN_FORMAT"]
+                },
+                "ad_account_id": {
+                    "type": "string",
+                    "maxLength": 18,
+                    "pattern": "^\\d+$"
+                }
+            },
+            "additionalProperties": false,
+            "required": ["start_date", "end_date"]
+        },
+        "parametersRequired": true
+    },
+    {
+        "name": "userAccountAnalyticsTopPins",
+        "path": "/user_account/analytics/top_pins",
+        "method": "GET",
+        "write": false,
+        "description": "Get user account top pins analytics.",
+        "url": "https://developers.pinterest.com/docs/api/v5/#operation/user_account/analytics/top_pins",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "start_date": {
+                    "type": "string",
+                    "format": "date"
+                },
+                "end_date": {
+                    "type": "string",
+                    "format": "date"
+                },
+                "sort_by": {
+                    "description": "Sort metric for top pins analytics.",
+                    "type": "string",
+                    "enum": ["ENGAGEMENT", "SAVE", "IMPRESSION", "OUTBOUND_CLICK", "PIN_CLICK"]
+                },
+                "from_claimed_content": {
+                    "type": "string",
+                    "enum": ["OTHER", "CLAIMED", "BOTH"]
+                },
+                "pin_format": {
+                    "type": "string",
+                    "enum": [
+                        "ALL",
+                        "ORGANIC_IMAGE",
+                        "ORGANIC_PRODUCT",
+                        "ORGANIC_VIDEO",
+                        "ADS_STANDARD",
+                        "ADS_PRODUCT",
+                        "ADS_VIDEO",
+                        "ADS_IDEA"
+                    ]
+                },
+                "app_types": {
+                    "type": "string",
+                    "enum": ["ALL", "MOBILE", "TABLET", "WEB"]
+                },
+                "content_type": {
+                    "type": "string",
+                    "enum": ["ALL", "PAID", "ORGANIC"]
+                },
+                "source": {
+                    "type": "string",
+                    "enum": ["ALL", "YOUR_PINS", "OTHER_PINS"]
+                },
+                "metric_types": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "ENGAGEMENT",
+                            "ENGAGEMENT_RATE",
+                            "IMPRESSION",
+                            "OUTBOUND_CLICK",
+                            "OUTBOUND_CLICK_RATE",
+                            "PIN_CLICK",
+                            "PIN_CLICK_RATE",
+                            "SAVE",
+                            "SAVE_RATE"
+                        ]
+                    }
+                },
+                "num_of_pins": {
+                    "type": "integer",
+                    "maximum": 50,
+                    "minimum": 1
+                },
+                "created_in_last_n_days": {
+                    "type": "number",
+                    "enum": [30]
+                },
+                "ad_account_id": {
+                    "type": "string",
+                    "maxLength": 18,
+                    "pattern": "^\\d+$"
+                }
+            },
+            "additionalProperties": false,
+            "required": ["start_date", "end_date", "sort_by"]
+        },
+        "parametersRequired": true
+    },
+    {
+        "name": "userAccountAnalyticsTopVideoPins",
+        "path": "/user_account/analytics/top_video_pins",
+        "method": "GET",
+        "write": false,
+        "description": "Get user account top video pins analytics.",
+        "url": "https://developers.pinterest.com/docs/api/v5/#operation/user_account/analytics/top_video_pins",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "start_date": {
+                    "type": "string",
+                    "format": "date"
+                },
+                "end_date": {
+                    "type": "string",
+                    "format": "date"
+                },
+                "sort_by": {
+                    "description": "Sort metric for top video pins analytics.",
+                    "type": "string",
+                    "enum": [
+                        "SAVE",
+                        "IMPRESSION",
+                        "OUTBOUND_CLICK",
+                        "VIDEO_MRC_VIEW",
+                        "VIDEO_AVG_WATCH_TIME",
+                        "VIDEO_V50_WATCH_TIME",
+                        "QUARTILE_95_PERCENT_VIEW",
+                        "VIDEO_10S_VIEW",
+                        "VIDEO_START"
+                    ]
+                },
+                "from_claimed_content": {
+                    "type": "string",
+                    "enum": ["OTHER", "CLAIMED", "BOTH"]
+                },
+                "pin_format": {
+                    "type": "string",
+                    "enum": [
+                        "ALL",
+                        "ORGANIC_IMAGE",
+                        "ORGANIC_PRODUCT",
+                        "ORGANIC_VIDEO",
+                        "ADS_STANDARD",
+                        "ADS_PRODUCT",
+                        "ADS_VIDEO",
+                        "ADS_IDEA"
+                    ]
+                },
+                "app_types": {
+                    "type": "string",
+                    "enum": ["ALL", "MOBILE", "TABLET", "WEB"]
+                },
+                "content_type": {
+                    "type": "string",
+                    "enum": ["ALL", "PAID", "ORGANIC"]
+                },
+                "source": {
+                    "type": "string",
+                    "enum": ["ALL", "YOUR_PINS", "OTHER_PINS"]
+                },
+                "metric_types": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "IMPRESSION",
+                            "SAVE",
+                            "VIDEO_MRC_VIEW",
+                            "VIDEO_AVG_WATCH_TIME",
+                            "VIDEO_V50_WATCH_TIME",
+                            "QUARTILE_95_PERCENT_VIEW",
+                            "VIDEO_10S_VIEW",
+                            "VIDEO_START",
+                            "OUTBOUND_CLICK"
+                        ]
+                    }
+                },
+                "num_of_pins": {
+                    "type": "integer",
+                    "maximum": 50,
+                    "minimum": 1
+                },
+                "created_in_last_n_days": {
+                    "type": "number",
+                    "enum": [30]
+                },
+                "ad_account_id": {
+                    "type": "string",
+                    "maxLength": 18,
+                    "pattern": "^\\d+$"
+                }
+            },
+            "additionalProperties": false,
+            "required": ["start_date", "end_date", "sort_by"]
+        },
+        "parametersRequired": true
+    },
+    {
+        "name": "followersList",
+        "path": "/user_account/followers",
+        "method": "GET",
+        "write": false,
+        "description": "List followers.",
+        "url": "https://developers.pinterest.com/docs/api/v5/#operation/followers/list",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "bookmark": {
+                    "type": "string"
+                },
+                "page_size": {
+                    "type": "integer",
+                    "maximum": 250,
+                    "minimum": 1
+                }
+            },
+            "additionalProperties": false
+        }
+    },
+    {
+        "name": "userFollowingGet",
+        "path": "/user_account/following",
+        "method": "GET",
+        "write": false,
+        "description": "List following.",
+        "url": "https://developers.pinterest.com/docs/api/v5/#operation/user_following/get",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "ad_account_id": {
+                    "type": "string",
+                    "maxLength": 18,
+                    "pattern": "^\\d+$"
+                },
+                "explicit_following": {
+                    "type": "boolean"
+                },
+                "feed_type": {
+                    "description": "Specifies the type of followees to be kept when filtering them.",
+                    "type": "string",
+                    "enum": ["ALL", "RANKED", "CREATOR_ONLY", "RANKED_CREATOR_ONLY"]
+                },
+                "bookmark": {
+                    "type": "string"
+                },
+                "page_size": {
+                    "type": "integer",
+                    "maximum": 250,
+                    "minimum": 1
+                }
+            },
+            "additionalProperties": false
+        }
+    },
+    {
+        "name": "boardsUserFollowsList",
+        "path": "/user_account/following/boards",
+        "method": "GET",
+        "write": false,
+        "description": "List following boards.",
+        "url": "https://developers.pinterest.com/docs/api/v5/#operation/boards_user_follows/list",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "ad_account_id": {
+                    "type": "string",
+                    "maxLength": 18,
+                    "pattern": "^\\d+$"
+                },
+                "explicit_following": {
+                    "type": "boolean"
+                },
+                "bookmark": {
+                    "type": "string"
+                },
+                "page_size": {
+                    "type": "integer",
+                    "maximum": 250,
+                    "minimum": 1
+                }
+            },
+            "additionalProperties": false
+        }
+    },
+    {
+        "name": "followUserUpdate",
+        "path": "/user_account/following/{username}",
+        "method": "POST",
+        "write": true,
+        "description": "Follow user. Restricted or beta access may be required.",
+        "url": "https://developers.pinterest.com/docs/api/v5/#operation/follow_user/update",
+        "body": {
+            "description": "Resource create operation model.",
+            "type": "object",
+            "properties": {
+                "auto_follow": {
+                    "description": "  Whether this request comes as result of auto-follow after clicking on a link.\n  Follow links can be used by partners on their site or in emails.\n  Only select",
+                    "type": "boolean"
+                }
+            }
+        },
+        "bodyRequired": true
+    },
+    {
+        "name": "userWebsitesGet",
+        "path": "/user_account/websites",
+        "method": "GET",
+        "write": false,
+        "description": "Get user websites.",
+        "url": "https://developers.pinterest.com/docs/api/v5/#operation/user_websites/get",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "bookmark": {
+                    "type": "string"
+                },
+                "page_size": {
+                    "type": "integer",
+                    "maximum": 250,
+                    "minimum": 1
+                }
+            },
+            "additionalProperties": false
+        }
+    },
+    {
+        "name": "verifyWebsiteUpdate",
+        "path": "/user_account/websites",
+        "method": "POST",
+        "write": true,
+        "description": "Verify website.",
+        "url": "https://developers.pinterest.com/docs/api/v5/#operation/verify_website/update",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "ad_account_id": {
+                    "type": "string",
+                    "maxLength": 18,
+                    "pattern": "^\\d+$"
+                }
+            },
+            "additionalProperties": false
+        },
+        "body": {
+            "description": "Resource create operation model.",
+            "type": "object",
+            "properties": {
+                "verification_method": {
+                    "description": "Method used to verify website ownership.",
+                    "type": "string",
+                    "enum": ["FILENAME", "METATAG", "DNSTXT"]
+                },
+                "website": {
+                    "description": "Website with path or domain only",
+                    "type": "string"
+                }
+            }
+        },
+        "bodyRequired": true
+    },
+    {
+        "name": "unverifyWebsiteDelete",
+        "path": "/user_account/websites",
+        "method": "DELETE",
+        "write": true,
+        "description": "Unverify website.",
+        "url": "https://developers.pinterest.com/docs/api/v5/#operation/unverify_website/delete",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "website": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false,
+            "required": ["website"]
+        },
+        "parametersRequired": true
+    },
+    {
+        "name": "websiteVerificationGet",
+        "path": "/user_account/websites/verification",
+        "method": "GET",
+        "write": false,
+        "description": "Get user verification code for website claiming.",
+        "url": "https://developers.pinterest.com/docs/api/v5/#operation/website_verification/get",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "ad_account_id": {
+                    "type": "string",
+                    "maxLength": 18,
+                    "pattern": "^\\d+$"
+                }
+            },
+            "additionalProperties": false
+        }
+    }
+]
