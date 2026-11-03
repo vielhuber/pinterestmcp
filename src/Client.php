@@ -58,8 +58,11 @@ final class Client
      * @param array<string, mixed> $parameters
      * @return array<mixed>
      */
-    public function grant(string $clientId, #[\SensitiveParameter] string $clientSecret, array $parameters): array
-    {
+    public function grant(
+        string $clientId,
+        #[\SensitiveParameter] string $clientSecret,
+        #[\SensitiveParameter] array $parameters
+    ): array {
         return $this->send(
             method: 'POST',
             path: '/oauth/token',
@@ -77,8 +80,12 @@ final class Client
      * @param list<string> $headers
      * @return array<mixed>
      */
-    private function send(string $method, string $path, array $headers, ?string $body): array
-    {
+    private function send(
+        string $method,
+        string $path,
+        #[\SensitiveParameter] array $headers,
+        #[\SensitiveParameter] ?string $body
+    ): array {
         $handle = curl_init('https://api.pinterest.com/v5' . $path);
         curl_setopt_array($handle, [
             CURLOPT_CUSTOMREQUEST => $method,
